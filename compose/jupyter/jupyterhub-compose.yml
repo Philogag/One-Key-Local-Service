@@ -1,0 +1,13 @@
+version: "3"
+services:
+
+  jupyterhub:
+    image: jupyterhub/jupyterhub
+    container_name: jupyter-hub
+    command: ["jupyterhub", "--config=/etc/jupyterhub_config.py"]
+    restart: always
+    ports:
+      - "8881:8000"
+    volumes: 
+      - "./data:/home/jovyan"
+      - "./jupyterhub_config.py:/etc/jupyterhub_config.py"

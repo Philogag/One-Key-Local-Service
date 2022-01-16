@@ -1,0 +1,23 @@
+version: "3"
+services:
+
+  gitlab:
+    image: twang2218/gitlab-ce-zh
+    restart: always
+    container_name: gitlab
+    hostname: 'gitlab.philogag.com'
+    environment:
+      TZ: 'Asia/Shanghai'
+    volumes:
+      - "./etc:/etc/gitlab"
+      - "./logs:/var/log/gitlab"
+      - "./data:/var/opt/gitlab"
+    ports:
+      - "1443:443"
+      - "8880:80"
+      - "222:22"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 512M

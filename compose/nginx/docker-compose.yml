@@ -1,0 +1,12 @@
+version: '3'
+services:
+
+  domain_nginx:
+    image: nginx:alpine
+    container_name: domain_nginx
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+      - ./html:/usr/share/nginx/html
