@@ -97,7 +97,7 @@ install_pre(){
     return;
   fi
   case $SYSTEM_INFO in 
-  "Deepin:15.11" | "Deepin:20" | "Ubuntu:20.04" | "Ubuntu:18.04" | "Debian:9" | "Debian:10")
+  "Deepin:15.11" | "Deepin:20" | "Ubuntu:20.04" | "Ubuntu:18.04" | "Debian:9" | "Debian:10" | "Debian:11")
     apt-get -y install curl software-properties-common apt-transport-https
     apt-get -y install python3 python3-pip
     ;;
@@ -121,6 +121,11 @@ install_docker(){
     ;;
   "Deepin:20" | "Debian:10")
     echo -e "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/debian buster stable" > /etc/apt/sources.list.d/docker.list
+    curl -fsSL "https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg" | apt-key add -
+    apt-get update && apt-get install -y docker-ce
+    ;;
+  "Debian:11")
+    echo -e "deb [arch=amd64] https://mirrors.ustc.edu.cn/docker-ce/linux/debian bullseye stable" > /etc/apt/sources.list.d/docker.list
     curl -fsSL "https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg" | apt-key add -
     apt-get update && apt-get install -y docker-ce
     ;;
